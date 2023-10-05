@@ -1,7 +1,14 @@
 <template>
-  <ButtonsLayerComponent />
-  <TextAreaComponent />
-  <SettingsLayerComponent />
+  <div class="main-app">
+    <div class="left-panel">
+      <ButtonsLayerComponent />
+    </div>
+    <div class="right-panel">
+      <TextAreaComponent />
+      <SettingsLayerComponent />
+    </div>
+  </div>
+  
 </template>
 
 <script>
@@ -32,5 +39,9 @@ export default {
 .fa, .fas, .fa-solid, .fa-regular {
   color: #717171;
   size: 20px;
+}
+.main-app{
+  display: flex;
+  justify-content: space-between;
 }
 </style>

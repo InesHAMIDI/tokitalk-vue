@@ -20,5 +20,11 @@ export default {
 }
 </script>
 <style scoped>
-
+    .buttons-area{
+        background-color: pink;
+        width: auto;
+        height: max-content;
+        display: flex;
+        flex-flow: column;
+    }
 </style>

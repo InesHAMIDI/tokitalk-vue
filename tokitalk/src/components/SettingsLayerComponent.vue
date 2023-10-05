@@ -1,13 +1,18 @@
 <template>
     <div class="settings">
-        <div volume settings>
+        <div class="volume settings">
             <p v-if="this.volume == 0"><i class="fa-solid fa-volume-off"></i></p>
-            <p v-if="this.volume <= 0.75"><i class="fa-solid fa-volume-low"></i></p>
+            <p v-if="this.volume <= 0.50 && this.volume > 0"><i class="fa-solid fa-volume-low"></i></p>
             <p v-if="this.volume >= 0.75"><i class="fa-solid fa-volume-high"></i></p>
 
-            <div class="volume-bar" role="progressbar" aria-valuenow={{ this.volume * 100 }} 
-                                                       aria-valuemin="0" 
-                                                       aria-valuemax="100">{{ this.volume * 100 }}%</div>
+            <!-- <div class="volume-bar" role="progressbar" aria-valuenow={{ this.volumeDisplay }} aria-valuemin="0"
+                aria-valuemax="100">
+                {{ this.volumeDisplay }}%
+            </div> -->
+        </div>
+
+        <div class="pitch">
+
         </div>
     </div>
 </template>
@@ -15,18 +20,26 @@
 
 export default {
     setup() {
-        this.volume = localStorage.getItem('volume')
+        //this.volume = localStorage.getItem('volume')
     },
-    data(){
+    data() {
         return {
-            volume: 0,
+            volume: 0.4,
+            
         }
     },
     methods: {
-        
+
+    },
+    computed:{
+        volumeDisplay: {
+            get(){
+                var vol = this.volume * 100;
+                console.log(vol.toString())
+                return vol.toString();            
+            }
+        }
     }
 }
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>
