@@ -1,10 +1,10 @@
 <template>
-    <div>
-        <label for="TextArea">Entrez votre texte</label>
+    <div class="text-area">
         <textarea v-model="text" id="TextArea" maxlength="100" placeholder="Welcome ! Bienvenue !"></textarea>
-        <button id="b-valider" @click="validateText()" :on-keypress="onPressEnter">
-            <font-awesome-icon :icon="['fas', 'check']" />
+        <button id="b-valider" @click="validateText()">
+            <i class="fa-solid fa-check"></i>
         </button>
+        <!--:on-keypress="onPressEnter"-->
     </div>
 </template>
 <script>
@@ -19,6 +19,7 @@ export default {
     },
     methods: {
         validateText(){
+            console.log(this.text)
             var speech = initSpeech();
             readText(this.text, speech);
             this.text = "";
@@ -27,4 +28,12 @@ export default {
 }
 </script>
 <style scoped>
+.text-area{
+    background-color: antiquewhite;
+}
+.fa, .fas, .fa-solid, .fa-regular {
+  color: #717171;
+  size: 20px;
+}
+
 </style>
