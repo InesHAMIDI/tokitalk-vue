@@ -1,22 +1,25 @@
 <template>
   <ButtonsLayerComponent />
   <TextAreaComponent />
+  <SettingsLayerComponent />
 </template>
 
 <script>
 import ButtonsLayerComponent from './components/ButtonsLayerComponent.vue';
+import SettingsLayerComponent from './components/SettingsLayerComponent.vue';
 import TextAreaComponent from './components/TextAreaComponent.vue';
-import { inject } from 'vue';
+//import { inject } from 'vue';
 
 export default {
   name: 'App',
   components: {
-    ButtonsLayerComponent, 
-    TextAreaComponent
-    },
+    ButtonsLayerComponent,
+    TextAreaComponent,
+    SettingsLayerComponent
+},
 
     setup() {
-        this.speech = inject('speech');
+        //const speech = inject('globalSpeech');
     },
     data(){
         return {

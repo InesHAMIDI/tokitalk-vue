@@ -10,22 +10,23 @@
     </div>
 </template>
 <script>
-import readText from '@/audio';
-import { inject } from 'vue';
+//import readText from '@/audio';
+//import { inject } from 'vue';
 
 export default {
     setup() {
-        this.speech = inject('speech');
+  //      this.speech = inject('globalSpeech');
     },
     data(){
         return {
             text: "",
+            //speech: SpeechSynthesisUtterance,
         }
     },
     methods: {
         validateText(){
             console.log(this.text)
-            readText(this.text, this.speech);
+            //readText(this.text, this.speech);
             this.text = "";
         }
     }
