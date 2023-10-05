@@ -1,4 +1,5 @@
-export function initSpeech(speech){
+export function initSpeech(){
+    var speech =  new SpeechSynthesisUtterance();
     
     if (localStorage.getItem("voice") == null)
         speech.voice = window.speechSynthesis.getVoices()[1];
@@ -25,7 +26,6 @@ export function initSpeech(speech){
     else
         speech.lang = localStorage.getItem("language");
 
-
     return speech;
 }
 
@@ -35,12 +35,4 @@ export function readText(text, speech){
     }
     speech.text = text;
     window.speechSynthesis.speak(speech);
-}
-
-export function pause(speech){
-    speech.pause();
-}
-
-export function stop(speech){
-    speech.stop();
 }

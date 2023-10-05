@@ -20,7 +20,6 @@ export default {
     data(){
         return {
             text: "",
-            speech: SpeechSynthesisUtterance,
         }
     },
     methods: {
