@@ -1,27 +1,32 @@
 <template>
     <div class="text-area">
-        <textarea v-model="text" id="TextArea" maxlength="100" placeholder="Welcome ! Bienvenue !"></textarea>
-        <button id="b-valider" @click="validateText()">
+        <textarea v-model="text" maxlength="100" placeholder="Welcome ! Bienvenue !"></textarea>
+
+        <button type="button" class="btn btn-outline-primary" @click="validateText()">
             <i class="fa-solid fa-check"></i>
         </button>
+
         <!--:on-keypress="onPressEnter"-->
     </div>
 </template>
 <script>
 import readText from '@/audio';
-import initSpeech from '@/audio';
+import { inject } from 'vue';
 
 export default {
+    setup() {
+        this.speech = inject('speech');
+    },
     data(){
         return {
-            text: String,
+            text: "",
+            speech: SpeechSynthesisUtterance,
         }
     },
     methods: {
         validateText(){
             console.log(this.text)
-            var speech = initSpeech();
-            readText(this.text, speech);
+            readText(this.text, this.speech);
             this.text = "";
         }
     }
@@ -31,9 +36,6 @@ export default {
 .text-area{
     background-color: antiquewhite;
 }
-.fa, .fas, .fa-solid, .fa-regular {
-  color: #717171;
-  size: 20px;
-}
+
 
 </style>

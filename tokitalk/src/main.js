@@ -3,8 +3,9 @@ import App from './App.vue'
 import '@/registerServiceWorker';
 
 /* import font awesome icon component */
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-createApp(App)
-.component('font-awesome-icon', FontAwesomeIcon)
-.mount('#app')
+createApp(App).mount('#app')
+App.config.globalProperties.$speech = new SpeechSynthesisUtterance();
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.bundle.min.js"
+import "@fortawesome/fontawesome-free/css/all.css"

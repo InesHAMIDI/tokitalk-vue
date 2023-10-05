@@ -1,5 +1,4 @@
-export function initSpeech(){
-    var speech = new SpeechSynthesisUtterance();
+export function initSpeech(speech){
     
     if (localStorage.getItem("voice") == null)
         speech.voice = window.speechSynthesis.getVoices()[1];
