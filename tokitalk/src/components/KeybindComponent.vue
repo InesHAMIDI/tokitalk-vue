@@ -18,7 +18,5 @@ export default {
 }
 </script>
 <style scoped>
-.m-{
-    
-}
+
 </style>

@@ -36,9 +36,8 @@ export default {
 </script>
 <style scoped>
 @import "../../public/cssVariables.css";
-
+/*
 .text-area{
-    background-color: var(--layers-background);
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -48,6 +47,6 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-
+*/
 
 </style>
