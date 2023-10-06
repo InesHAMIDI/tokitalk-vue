@@ -20,20 +20,15 @@
         </div>
 
         <div class="voices">
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ this.voice }}
-                </button>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" v-for="v in this.voices" :key="v.id" @click="selectVoice(v.id)">{{ v.id }}</a>
-                </div>
-            </div>
+            <p v-for="v in this.voices" :key="v">{{ v.name }}</p>
+            <p> NIQUE TOI BOOTSTRAP</p>
         </div>
+
+
     </div>
 </template>
 <script>
+     
 
 export default {
     setup() {
@@ -48,7 +43,7 @@ export default {
 
         },
 
-        selectVoice(v){
+        selectVoice(v) {
             localStorage.setItem('voiceIndex', v);
         }
     },
@@ -61,11 +56,12 @@ export default {
             return localStorage.getItem('pitch');
         },
 
-        voices(){
+        voices() {
+            console.log(window.speechSynthesis.getVoices())
             return window.speechSynthesis.getVoices();
         },
 
-        voice(){
+        voice() {
             return localStorage.getItem('voiceIndex');
         },
 
