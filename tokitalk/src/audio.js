@@ -1,10 +1,7 @@
 export function initSpeech(){
     var speech =  new SpeechSynthesisUtterance();
     
-    if (localStorage.getItem("voiceIndex") == null)
-        speech.voice = window.speechSynthesis.getVoices()[1];
-    else 
-    speech.voice = localStorage.getItem("voice");
+    speech.voice = window.speechSynthesis.getVoices()[1];
     
     if(localStorage.getItem("volume") == null)
         speech.volume = 1;

@@ -19,11 +19,6 @@
             </div>
         </div>
 
-        <div class="voices">
-            <p v-for="v in this.voices" :key="v">{{ v.name }}</p>
-            <p> NIQUE TOI BOOTSTRAP</p>
-        </div>
-
 
     </div>
 </template>
@@ -54,15 +49,6 @@ export default {
 
         pitch() {
             return localStorage.getItem('pitch');
-        },
-
-        voices() {
-            console.log(window.speechSynthesis.getVoices())
-            return window.speechSynthesis.getVoices();
-        },
-
-        voice() {
-            return localStorage.getItem('voiceIndex');
         },
 
         volumeDisplay() {

@@ -40,7 +40,6 @@ export default {
     var buttons = ["bonjour", "oui", "non", "je me tire"];
 
     localStorage.setItem("buttons", JSON.stringify(buttons) );
-    localStorage.setItem("voiceIndex", 1);
     localStorage.setItem("pitch", 1);
     localStorage.setItem("volume", 0.5);
     localStorage.setItem("rate", 5);
