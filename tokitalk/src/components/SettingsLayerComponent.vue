@@ -8,6 +8,8 @@
             <!-- <div class="volume-bar" role="progressbar" aria-valuenow={{ this.volumeDisplay }} aria-valuemin="0"
                 aria-valuemax="100">
                 {{ this.volumeDisplay }}%
+
+                //USE ONSCROLL EVENT
             </div> -->
         </div>
 
@@ -25,7 +27,6 @@ export default {
     data() {
         return {
             volume: 0.4,
-            
         }
     },
     methods: {

@@ -1,30 +1,51 @@
 <template>
-    <div class="buttons-area">
-    
-        <button type="button" class="btn btn-outline-primary" @click="uwu()">
-            <i class="fa-solid fa-plus"></i>
-        </button>
+    <div class="layer">
+        <div class="buttons-area">
+            <div class="perso-buttons">
+                <button v-for="button in this.buttons" :key="button" class="btn btn-primary" 
+                    @click="readButton()">
+                    {{ button }}
+                </button>
+            </div>
+
+            <button type="button" class="btn btn-primary" @click="createNewButton()">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
     </div>
 </template>
 <script>
 
 export default {
-    data(){
+    setup() {
+    },
+    data() {
         return {
-            
         }
     },
     methods: {
-        
+        createNewButton(){
+
+        },
+
+        readButton(){
+
+        }
+    },
+    computed:{
+        buttons(){
+            return localStorage.getItem("buttons")
+        }
     }
 }
 </script>
 <style scoped>
-    .buttons-area{
-        background-color: pink;
-        width: auto;
-        height: max-content;
-        display: flex;
-        flex-flow: column;
-    }
+@import "../../public/cssVariables.css";
+
+.buttons-area {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    height: fit-content;
+}
 </style>

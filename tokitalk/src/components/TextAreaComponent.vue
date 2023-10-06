@@ -1,12 +1,14 @@
 <template>
-    <div class="text-area">
-        <textarea v-model="text" maxlength="100" placeholder="Welcome ! Bienvenue !"></textarea>
+    <div class="layer">
+        <div class="text-area">
+        <textarea class="elements" v-model="text" maxlength="100" placeholder="Welcome ! Bienvenue !"></textarea>
 
-        <button type="button" class="btn btn-outline-primary" @click="validateText()">
+        <button type="button" class="btn btn-primary elements" @click="validateText()">
             <i class="fa-solid fa-check"></i>
         </button>
 
         <!--:on-keypress="onPressEnter"-->
+    </div>
     </div>
 </template>
 <script>
@@ -33,8 +35,18 @@ export default {
 }
 </script>
 <style scoped>
+@import "../../public/cssVariables.css";
+
 .text-area{
-    background-color: antiquewhite;
+    background-color: var(--layers-background);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.elements{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
