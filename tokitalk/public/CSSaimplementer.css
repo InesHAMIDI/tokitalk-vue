@@ -1,0 +1,55 @@
+#app {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 400%;
+    color: var(--text-color);
+    background-color: var(--background-app);
+  }
+  
+  .main-app {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  
+  }
+  
+  body{
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* The class for all layers (header, footer, buttons, textarea... */
+  .layer {
+    background-color: var(--layers-background);
+    height: 100%;
+  }
+  
+  .footer {
+    bottom: 0;
+    position: fixed;
+    height: 50px;
+  }
+  
+  .header {
+    top: 0;
+    position: fixed;
+    height: 50px;
+  }
+  
+  .btn {
+    width: 250px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: var(--buttons-normal);
+  }
+  
+  .btn:hover {
+    background-color: var(--buttons-hover);
+    font-weight: bold;
+  }
+  
+  .btn:active {
+    background-color: var(--buttons-clicked);
+    font-weight: bold;
+  }

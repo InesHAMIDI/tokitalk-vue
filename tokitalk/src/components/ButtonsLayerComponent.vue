@@ -34,7 +34,7 @@ export default {
     },
     computed:{
         buttons(){
-            return localStorage.getItem("buttons")
+            return JSON.parse(localStorage.getItem("buttons"));
         }
     }
 }
@@ -46,6 +46,6 @@ export default {
     display: flex;
     flex-direction: column;
     overflow: scroll;
-    height: fit-content;
+    align-items: center;
 }
 </style>
