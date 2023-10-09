@@ -19,6 +19,13 @@
             </div>
         </div>
 
+        <div class="rate">
+            <i class="fa-solid fa-microphone"></i>
+            <div id="rate-bar" class="progress-bar" role="progressbar" v-bind:aria-valuenow="rateDisplay"
+                aria-valuemin="0" aria-valuemax="100">
+                {{ this.rateDisplay }} %
+            </div>
+        </div>
 
     </div>
 </template>
@@ -51,6 +58,14 @@ export default {
             return localStorage.getItem('pitch');
         },
 
+        rate(){
+            return localStorage.getItem('rate');
+        },
+
+        language(){
+            return localStorage.getItem('language');
+        },
+
         volumeDisplay() {
             let vol = this.volume * 100;
             return vol.toString();
@@ -59,6 +74,11 @@ export default {
         pitchDisplay() {
             let p = this.pitch * 100;
             return p.toString();
+        },
+
+        rateDisplay() {
+            let r = this.rate * 100;
+            return r.toString();
         }
     }
 }
