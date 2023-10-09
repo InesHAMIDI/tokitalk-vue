@@ -2,15 +2,15 @@
     <div class="layer">
         <div class="buttons-area">
             <div class="perso-buttons">
-                <button v-for="button in this.buttons" :key="button" class="btn btn-primary" 
+                <n-button type="primary" v-for="button in this.buttons" :key="button" class="btn btn-primary" 
                     @click="readButton()">
                     {{ button }}
-                </button>
+                </n-button>
             </div>
 
-            <button type="button" class="btn btn-primary" @click="createNewButton()">
+            <n-button type="primary" class="btn btn-primary" @click="createNewButton()">
                 <i class="fa-solid fa-plus"></i>
-            </button>
+            </n-button>
         </div>
     </div>
 </template>
