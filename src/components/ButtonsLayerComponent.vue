@@ -2,10 +2,10 @@
     <div class="layer">
         <div class="buttons-area">
             <div class="perso-buttons">
-                <n-button type="primary" v-for="button in this.buttons" :key="button" class="btn btn-primary" 
+                <ButtonComponent v-for="button in this.buttons" :key="button"
                     @click="readButton()">
                     {{ button }}
-                </n-button>
+                </ButtonComponent>
             </div>
 
             <n-button type="primary" class="btn btn-primary" @click="createNewButton()">
@@ -15,8 +15,11 @@
     </div>
 </template>
 <script>
-
+import ButtonComponent from "@/components/ButtonComponent.vue";
 export default {
+  components:{
+    ButtonComponent
+  },
     setup() {
     },
     data() {
