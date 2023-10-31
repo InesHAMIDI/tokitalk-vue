@@ -2,26 +2,31 @@
   <div class="layer">
     <div class="buttons-area">
       <div class="perso-buttons">
-        <button v-for="button in this.buttons" :key="button"
+        <n-button v-for="button in this.buttons" :key="button"
                 @click="$emit('button')">
-        </button>
+           {{ button }}
+        </n-button>
       </div>
 
-      <n-button type="primary" class="btn btn-primary" @click='newClicked = !newClicked'>
+      <n-button type="primary" class="btn btn-primary">
         <i class="fa-solid fa-plus"></i>
       </n-button>
       <n-input
-          :disabled='newClicked'
           type="text"
-          size="small"
+          size="tiny"
       />
     </div>
   </div>
 </template>
 <script>
+import { NInput} from 'naive-ui';
 export default {
+
+  components: {
+    NInput,
+  },
+
   setup() {
-    this.newClicked(false);
   },
   data() {
     return {

@@ -1,23 +1,27 @@
 <template>
   <div class="layer">
-    <n-form>
-      <n-form-item>
-        <n-input
-            class="text-area"
-            type="textarea"
-            placeholder="Hey !!"
-        />
-      </n-form-item>
-      <n-form-item>
-        <n-button @click="validateText">
-          <i class="fa-solid fa-check"></i>
-        </n-button>
-      </n-form-item>
-    </n-form>
+    <n-space vertical>
+      <n-input
+          v-model:value="text"
+          type="textarea"
+          placeholder="TokiTalk"
+          size="medium"
+      />
+    </n-space>
+    <n-button @click='$emit(text)'>
+      <i class="fa-solid fa-check"></i>
+    </n-button>
   </div>
 </template>
 <script>
+import { NInput, NSpace } from 'naive-ui';
+
 export default {
+  components:{
+    NInput,
+    NSpace,
+
+  },
   setup() {
   },
   data() {
@@ -25,10 +29,7 @@ export default {
       text: "",
     }
   },
-  methods: {
-    validateText() {
-    }
-  }
+  methods: {}
 }
 </script>
 <style scoped>

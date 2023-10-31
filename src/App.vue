@@ -5,10 +5,10 @@
     </div>
     <div class="main-app">
       <div class="left-panel">
-        <ButtonsLayerComponent />
+        <ButtonsLayerComponent  @button="(text) => this.readText(text)" />
       </div>
       <div class="right-panel">
-        <TextAreaComponent />
+        <TextAreaComponent @text="(text) => this.readText(text)"/>
         <SettingsLayerComponent />
       </div>
     </div>
@@ -78,6 +78,7 @@ export default {
       }
       this.speech.text = text;
       window.speechSynthesis.speak(this.speech);
+      console.log(text);
     }
   }
 }

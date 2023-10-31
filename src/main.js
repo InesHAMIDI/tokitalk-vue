@@ -11,9 +11,9 @@ import {
     components: [NButton]
   })
 
-createApp(App)
-.use(naive).mount('#app')
-
+ createApp(App)
+.use(naive)
+.mount('#app')
 //App.config.globalProperties.$globalSpeech = initSpeech();
 import "@fortawesome/fontawesome-free/css/all.css"
 
