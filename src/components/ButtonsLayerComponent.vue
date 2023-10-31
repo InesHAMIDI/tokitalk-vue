@@ -3,7 +3,7 @@
     <div class="buttons-area">
       <div class="perso-buttons">
         <n-button v-for="button in this.buttons" :key="button"
-                @click="$emit('button')">
+                @click="$emit(button)">
            {{ button }}
         </n-button>
       </div>
@@ -34,9 +34,6 @@ export default {
     }
   },
   methods: {
-    createNewButton() {
-
-    },
 
   },
   computed: {

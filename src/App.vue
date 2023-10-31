@@ -73,12 +73,12 @@ export default {
     },
 
     readText(text){
+      console.log(text);
       if(text === "" || typeof(text) !== 'string'){
         return;
       }
       this.speech.text = text;
       window.speechSynthesis.speak(this.speech);
-      console.log(text);
     }
   }
 }
