@@ -27,7 +27,8 @@
     "@vue/cli-service": "~5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "naive-ui": "^2.35.0"
+    "naive-ui": "^2.35.0",
+    "vue-cli-plugin-pinia": "~0.2.4"
   },
   "eslintConfig": {
     "root": true,
