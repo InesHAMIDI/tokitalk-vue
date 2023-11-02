@@ -49,7 +49,7 @@ export default {
     initSpeech(){
       this.speech =  new SpeechSynthesisUtterance();
 
-      this.speech.voice = window.speechSynthesis.getVoices()[1];
+    /*  this.speech.voice = window.speechSynthesis.getVoices()[1];
 
       if(localStorage.getItem("volume") == null)
         this.speech.volume = 1;
@@ -69,7 +69,7 @@ export default {
       if(localStorage.getItem("language") == null)
         this.speech.lang = "fr-FR"
       else
-        this.speech.lang = localStorage.getItem("language");
+        this.speech.lang = localStorage.getItem("language");*/
     },
 
     readText(text){
