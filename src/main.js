@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import {
     // create naive ui
     create,
@@ -13,7 +14,7 @@ const naive = create({
 })
 
 const pinia = createPinia()
-
+pinia.use(piniaPluginPersistedstate)
 createApp(App).use(createPinia())
 .use(naive).use(pinia)
 .mount('#app')
