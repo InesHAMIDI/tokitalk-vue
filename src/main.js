@@ -6,11 +6,15 @@ import {
     // create naive ui
     create,
     // component
-    NButton
+    NButton,
+    NModal,
+    NCarousel,
+    NSlider
+
   } from 'naive-ui'
 
 const naive = create({
-  components: [NButton]
+  components: [NButton, NModal, NCarousel, NSlider]
 })
 
 const pinia = createPinia()
@@ -19,9 +23,7 @@ createApp(App).use(createPinia())
 .use(naive).use(pinia)
 .mount('#app')
 
-//App.config.globalProperties.$globalSpeech = initSpeech();
 import "@fortawesome/fontawesome-free/css/all.css"
 
-//import { initSpeech } from './audio';
 
 
