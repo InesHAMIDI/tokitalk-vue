@@ -36,7 +36,7 @@ export default {
 }
 </script>
 <style scoped>
-@import "../../public/cssVariables.css";
+@import "../../public/cssVariables.scss";
 /*
 .text-area{
     align-items: center;

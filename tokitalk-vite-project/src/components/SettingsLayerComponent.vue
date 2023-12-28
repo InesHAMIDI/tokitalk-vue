@@ -84,11 +84,11 @@ export default {
 }
 </script>
 <style scoped>
-@import "../../public/cssVariables.css";
+@import "../../public/cssVariables.scss";
 
 .progress-bar {
     height: 40px;
-    background-color: var(--buttons-normal);
+    //background-color: var(--buttons-normal);
     margin-bottom: 10px;
     width: 200px;
 }

@@ -1,51 +1,55 @@
 <template>
-    <div class="layer">
-        <div class="buttons-area">
-            <div class="perso-buttons">
-                <n-button type="primary" v-for="button in this.buttons" :key="button" class="btn btn-primary" 
-                    @click="readButton()">
-                    {{ button }}
-                </n-button>
-            </div>
+  <div class="layer">
+    <div class="buttons-area">
+      <div class="perso-buttons">
+        <n-button v-for="button in this.buttons" :key="button"
+                  @click="$emit(button)">
+          {{ button }}
+        </n-button>
+      </div>
 
-            <n-button type="primary" class="btn btn-primary" @click="createNewButton()">
-                <i class="fa-solid fa-plus"></i>
-            </n-button>
-        </div>
+      <n-button type="primary" class="btn btn-primary">
+        <i class="fa-solid fa-plus"></i>
+      </n-button>
+      <n-input
+          type="text"
+          size="tiny"
+      />
     </div>
+  </div>
 </template>
-<script>
-
+<script lang="ts">
+import { NInput} from 'naive-ui';
 export default {
-    setup() {
-    },
-    data() {
-        return {
-        }
-    },
-    methods: {
-        createNewButton(){
 
-        },
+  components: {
+    NInput,
+  },
 
-        readButton(){
-
-        }
-    },
-    computed:{
-        buttons(){
-            return JSON.parse(localStorage.getItem("buttons"));
-        }
+  setup() {
+  },
+  data() {
+    return {
+      newClicked: Boolean,
     }
+  },
+  methods: {
+
+  },
+  computed: {
+    buttons() {
+      return JSON.parse(localStorage.getItem("buttons"));
+    }
+  }
 }
 </script>
 <style scoped>
-@import "../../public/cssVariables.css";
+@import "../../public/cssVariables.scss";
 
 .buttons-area {
-    display: flex;
-    flex-direction: column;
-    overflow: scroll;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  align-items: center;
 }
 </style>
