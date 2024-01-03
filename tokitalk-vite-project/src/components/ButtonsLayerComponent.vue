@@ -2,7 +2,7 @@
   <div class="layer">
     <div class="buttons-area">
       <div class="perso-buttons">
-        <n-button v-for="button in this.buttons" :key="button"
+        <n-button v-for="button in buttons" :key="button"
                   @click="$emit(button)">
           {{ button }}
         </n-button>
@@ -38,7 +38,6 @@ export default {
   },
   computed: {
     buttons() {
-      return JSON.parse(localStorage.getItem("buttons"));
     }
   }
 }
