@@ -6,9 +6,6 @@
                    data-show-count="true" aria-label="Star InesHAMIDI/tokitalk on GitHub">Star
     </github-button>
   </div>
-  <div>
-
-  </div>
 </template>
 
 <script>
