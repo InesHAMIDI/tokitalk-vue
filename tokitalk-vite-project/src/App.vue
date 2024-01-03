@@ -10,7 +10,6 @@ export default {
   name: "App",
   components: {
     HeaderComponent,
-    FooterComponent,
     ButtonsLayerComponent,
     SettingsLayerComponent,
     TextAreaLayerComponent
@@ -23,7 +22,6 @@ export default {
   <ButtonsLayerComponent/>
   <SettingsLayerComponent/>
   <TextAreaLayerComponent/>
-  <FooterComponent/>
 </template>
 
 <style scoped>
