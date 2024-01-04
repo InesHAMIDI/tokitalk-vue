@@ -3,7 +3,7 @@
     <img :src="'/public/logo.svg'" alt="the infinite symbol, symbol of autistic community"/>
     <github-button href="https://github.com/InesHAMIDI/tokitalk"
                    data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large"
-                   data-show-count="true" aria-label="Star InesHAMIDI/tokitalk on GitHub">Star
+                   data-show-count="true" aria-label="Star the project on GitHub">Star
     </github-button>
   </div>
 </template>

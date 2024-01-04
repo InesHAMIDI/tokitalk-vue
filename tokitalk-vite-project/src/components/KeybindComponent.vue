@@ -21,7 +21,12 @@
 </template>
 <script lang="ts">
 
+import {NCarousel} from "naive-ui";
+
 export default {
+  components:{
+    NCarousel
+  },
   data() {
     return {}
   },
