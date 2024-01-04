@@ -10,6 +10,11 @@ declare module 'vue' {
     ButtonsLayerComponent: typeof import('./src/components/ButtonsLayerComponent.vue')['default']
     HeaderComponent: typeof import('./src/components/HeaderComponent.vue')['default']
     KeybindComponent: typeof import('./src/components/KeybindComponent.vue')['default']
+    NButton: typeof import('naive-ui')['NButton']
+    NCarousel: typeof import('naive-ui')['NCarousel']
+    NInput: typeof import('naive-ui')['NInput']
+    NModal: typeof import('naive-ui')['NModal']
+    NSlider: typeof import('naive-ui')['NSlider']
     SettingsLayerComponent: typeof import('./src/components/SettingsLayerComponent.vue')['default']
     TextAreaLayerComponent: typeof import('./src/components/TextAreaLayerComponent.vue')['default']
   }

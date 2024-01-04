@@ -11,6 +11,7 @@ export default defineConfig({
     plugins: [
         vue(),
         AutoImport({
+            dts: true,
             imports: [
                 'vue',
                 {
@@ -19,7 +20,7 @@ export default defineConfig({
                         'useMessage',
                         'useNotification',
                         'useLoadingBar'
-                    ]
+                    ],
                 }
             ]
         }),
