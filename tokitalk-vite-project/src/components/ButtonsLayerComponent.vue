@@ -24,7 +24,7 @@
           />
         </n-form-item>
         <n-form-item>
-          <n-button tertiary
+          <n-button
                     @click="newButton(formValue.newButtonText)">
             <font-awesome-icon :icon="['fas', 'plus']"/>
           </n-button>
@@ -63,7 +63,7 @@ export default {
     },
 
     removeButton(index: number) {
-      if(!index) return;
+      if (!index) return;
       this.store.removeButton(index);
     }
   },

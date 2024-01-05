@@ -1,52 +1,54 @@
 <template>
   <div class="layer">
     <div class="text-area">
-      <n-input type="textarea" size="small" :autosize="{
-                minRows: 3,
-                maxRows: 5
-            }" class="elements" v-model:value="text" maxlength="100" placeholder="Welcome ! Bienvenue !" />
-
-      <n-button type="primary" @click="validateText()"><i class="fa-solid fa-check"></i></n-button>
-
-      <!--:on-keypress="onPressEnter"-->
+      <n-form ref="formRef"
+              :model="formValue">
+        <n-form-item>
+          <n-input round
+                   v-model:value="formValue.textToRead"
+                   type="textarea"
+                   size="small"
+                   :autosize="{
+                      minRows: 3,
+                      maxRows: 5
+                   }"
+                   @keyup.enter="validateText"
+          />
+        </n-form-item>
+        <n-form-item>
+          <n-button
+                    @click="validateText">
+            <font-awesome-icon :icon="['fas', 'paper-plane']"/>
+          </n-button>
+        </n-form-item>
+      </n-form>
     </div>
   </div>
 </template>
-<script>
-//import readText from '@/audio';
-//import { inject } from 'vue';
+<script lang="ts">
+import {ref} from "vue";
+import {FormInst} from 'naive-ui'
 
 export default {
   setup() {
-    //      this.speech = inject('globalSpeech');
-  },
-  data() {
+    const formRef = ref<FormInst | null>(null)
     return {
-      text: "",
-      //speech: SpeechSynthesisUtterance,
+      formRef,
+      formValue: ref({
+        textToRead: ''
+      }),
     }
   },
   methods: {
     validateText() {
-      console.log(this.text)
-      //readText(this.text, this.speech);
-      this.text = "";
+      if (!this.formValue.textToRead) return;
+      this.$emit(this.formValue.textToRead);
+      this.formValue.textToRead = "";
     }
   }
 }
 </script>
 <style scoped>
 @import "../../public/cssVariables.scss";
-/*
-.text-area{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
 
-.elements{
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-*/
 </style>
