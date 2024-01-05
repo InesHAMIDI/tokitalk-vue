@@ -1,20 +1,24 @@
 import {defineStore} from 'pinia';
-import { createPinia } from 'pinia';
 
-export const pinia = createPinia();
 export const useButtonStore = defineStore('button', {
     state: () => ({
-        buttons: [],
+        buttons: [] as string[],
     }),
     actions: {
         addButton(text: string) {
-            this.buttons.push(text);
+            this.buttons.push(text)
+            localStorage.setItem("buttons", this.buttons.toString());
         },
         getButtons(): string[] {
+            var bts = localStorage.getItem("buttons");
+            if(bts) {
+                this.buttons = bts?.split(",");
+            }
             return this.buttons;
         },
-        editButton(index: number, newText: string) {
-            this.buttons[index] = newText;
-        },
+        removeButton(index: number) {
+            delete this.buttons[index];
+            localStorage.setItem("buttons", this.buttons.toString());
+        }
     },
 });

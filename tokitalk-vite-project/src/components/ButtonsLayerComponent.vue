@@ -1,43 +1,75 @@
 <template>
-  <div class="layer">
-    <div class="buttons-area">
-      <div class="perso-buttons">
-        <n-button v-for="button in buttons" :key="button"
-                  @click="$emit(button)">
+  <div class="buttons-area">
+    <div class="perso-buttons" v-for="button in buttons" :key="button">
+      <div v-if="button">
+        <n-button @click="$emit(button)">
           {{ button }}
         </n-button>
+        <n-button @click="removeButton(buttons.indexOf(button))">
+          <font-awesome-icon :icon="['fas', 'trash']"/>
+        </n-button>
       </div>
-
-      <n-button type="primary" class="btn btn-primary">
-        <i class="fa-solid fa-plus"></i>
-      </n-button>
-      <n-input
-          type="text"
-          size="tiny"
-      />
     </div>
+
+    <div>
+      <n-divider></n-divider>
+      <n-form ref="formRef"
+              :model="formValue">
+        <n-form-item>
+          <n-input round
+                   type="text"
+                   size="tiny"
+                   v-model:value="formValue.newButtonText"
+                   @keyup.enter="newButton(formValue.newButtonText)"
+          />
+        </n-form-item>
+        <n-form-item>
+          <n-button tertiary
+                    @click="newButton(formValue.newButtonText)">
+            <font-awesome-icon :icon="['fas', 'plus']"/>
+          </n-button>
+        </n-form-item>
+      </n-form>
+    </div>
+
   </div>
 </template>
 <script lang="ts">
-import { NInput} from 'naive-ui';
+import {ref} from 'vue'
+import {FormInst} from 'naive-ui'
+import {useButtonStore} from "../stores/buttonsStore.ts";
+
 export default {
-
-  components: {
-    NInput,
-  },
-
   setup() {
+    const formRef = ref<FormInst | null>(null)
+    return {
+      formRef,
+      formValue: ref({
+        newButtonText: ''
+      }),
+    }
   },
   data() {
     return {
-      newClicked: Boolean,
+      store: useButtonStore(),
     }
   },
   methods: {
+    newButton(text: string) {
+      if (!text) return;
 
+      this.store.addButton(text);
+      this.formValue.newButtonText = '';
+    },
+
+    removeButton(index: number) {
+      if(!index) return;
+      this.store.removeButton(index);
+    }
   },
   computed: {
     buttons() {
+      return this.store.getButtons();
     }
   }
 }
@@ -46,9 +78,7 @@ export default {
 @import "../../public/cssVariables.scss";
 
 .buttons-area {
-  display: flex;
-  flex-direction: column;
-  overflow: scroll;
-  align-items: center;
+  background-color: #74C69D;
+  color: #ffffff;
 }
 </style>

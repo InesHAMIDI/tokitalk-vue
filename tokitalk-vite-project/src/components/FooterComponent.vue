@@ -25,8 +25,4 @@ export default {
 }
 </script>
 <style scoped>
-.header {
-  height: 50px;
-  background-color: chocolate;
-}
 </style>
