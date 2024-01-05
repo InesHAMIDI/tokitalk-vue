@@ -11,7 +11,7 @@ export default defineConfig({
     plugins: [
         vue(),
         AutoImport({
-            dts: true,
+            dts: 'auto-imports.d.ts',
             imports: [
                 'vue',
                 {
@@ -21,7 +21,8 @@ export default defineConfig({
                         'useNotification',
                         'useLoadingBar'
                     ],
-                }
+                },
+                'pinia',
             ]
         }),
         Components({
