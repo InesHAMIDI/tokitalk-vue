@@ -1,14 +1,14 @@
-import {pinia} from "./store.ts";
+import { defineStore } from 'pinia';
 
-export const buttonStore = pinia?.defineStore('text', {
+export const buttonStore = defineStore('text', {
     state: () => ({
-        settings: [],
+        settings: [] as string[],
     }),
     actions: {
-        getSettings() {
+        getSettings(): string[] {
             return this.settings;
         },
-        editSetting(index, newText) {
+        editSetting(index: number, newText: string) {
             this.settings[index] = newText;
         },
     },

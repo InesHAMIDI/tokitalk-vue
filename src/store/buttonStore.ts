@@ -1,8 +1,8 @@
-import {pinia} from "./store.ts";
 
-export const buttonStore = pinia?.defineStore('text', {
+import { defineStore } from 'pinia';
+export const buttonStore = defineStore('text', {
     state: () => ({
-        buttons: [],
+        buttons: [] as string[]
     }),
     actions: {
         addButton(text: string) {

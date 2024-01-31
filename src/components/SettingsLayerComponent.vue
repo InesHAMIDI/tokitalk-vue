@@ -17,11 +17,11 @@
       <n-slider v-model:value="rate" :step="10"/>
     </div>
 
-    <div>
-      <n-dropdown trigger="clixk" :options="options" @select="selectLang">
+   <!-- <div>
+      <n-dropdown trigger="click" :options="options" @select="selectLang">
         <n-button>Go For a Trip</n-button>
       </n-dropdown>
-    </div>
+    </div>-->
 
     <!--    <div class="keybind">-->
     <!--      <n-button @click="showModal = true">-->
