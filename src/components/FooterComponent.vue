@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import GithubButton from 'vue-github-button'
 export default {
   components: {
