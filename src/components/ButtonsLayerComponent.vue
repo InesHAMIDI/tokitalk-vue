@@ -5,7 +5,7 @@
         <n-button @click="$emit(button)">
           {{ button }}
         </n-button>
-        <n-button @click="removeButton(buttons.indexOf(button))">
+        <n-button @click="removeButton(button)">
           <font-awesome-icon :icon="['fas', 'trash']"/>
         </n-button>
       </div>
@@ -62,8 +62,9 @@ export default {
       this.formValue.newButtonText = '';
     },
 
-    removeButton(index: number) {
-      if (!index) return;
+    removeButton(button: string) {
+      const index = this.buttons.indexOf(button);
+      console.log(index);
       this.store.removeButton(index);
     }
   },

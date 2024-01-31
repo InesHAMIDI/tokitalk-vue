@@ -10,14 +10,19 @@ export const useButtonStore = defineStore('button', {
             localStorage.setItem("buttons", this.buttons.toString());
         },
         getButtons(): string[] {
-            var bts = localStorage.getItem("buttons");
+            const bts = localStorage.getItem("buttons");
             if(bts) {
                 this.buttons = bts?.split(",");
             }
             return this.buttons;
         },
         removeButton(index: number) {
-            delete this.buttons[index];
+            if(index == 0) {
+                this.buttons.shift();
+            }
+            else {
+                this.buttons.splice(index, 1);
+            }
             localStorage.setItem("buttons", this.buttons.toString());
         }
     },
