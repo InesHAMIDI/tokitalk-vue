@@ -19,6 +19,6 @@ declare module 'vue' {
     NInput: typeof import('naive-ui')['NInput']
     NSlider: typeof import('naive-ui')['NSlider']
     SettingsLayerComponent: typeof import('./src/components/SettingsLayerComponent.vue')['default']
-    TextAreaLayerComponent: typeof import('./src/components/TextAreaLayerComponent.vue')['default']
+    TextareaLayerComponent: typeof import('./src/components/TextareaLayerComponent.vue')['default']
   }
 }
