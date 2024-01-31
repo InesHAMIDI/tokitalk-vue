@@ -1,36 +1,42 @@
 import {defineStore} from 'pinia';
+import {languages, LanguageType, stringToLanguageType} from "../assets/languages.ts";
+
+export  function stringToSpeechSynthesisVoice(voiceURI: string): SpeechSynthesisVoice {
+    let voice: SpeechSynthesisVoice | undefined = speechSynthesis.getVoices().find((voice: SpeechSynthesisVoice) => voice.voiceURI === voiceURI);
+    if (voice === undefined)
+        voice = speechSynthesis.getVoices()[1];
+    return voice;
+}
 
 export const useSettingsStore = defineStore('setting', {
     state: () => ({
-        voiceIndex: 0, //the index of the voice in the voices array
-        langIndex: 0, //the index of the lang in the lang array
+        voice: speechSynthesis.getVoices()[1], //the voice selected
+        lang: languages[0], //the language selected
         rate: 1, //float between [0.1 ; 10]
         pitch: 1, //float between [0 ; 2]
         volume: 0 //float between [0 ; 1]
     }),
     actions: {
-        setVoiceInd(index: number) {
-            this.voiceIndex = index;
-            localStorage.setItem("voiceIndex", this.voiceIndex.toString());
+        setVoice(voice: SpeechSynthesisVoice) {
+            this.voice = voice;
+            localStorage.setItem("voice", this.voice.toString());
         },
-        getVoiceIndex(): number {
-            var voiceInd = localStorage.getItem("voiceIndex");
-            if (voiceInd) {
-                this.voiceIndex = +voiceInd;
-            }
-            return this.voiceIndex;
+        getVoice(): SpeechSynthesisVoice {
+            const voice: string | null = localStorage.getItem("voice");
+            if (!voice) return speechSynthesis.getVoices()[1];
+            this.voice = stringToSpeechSynthesisVoice(voice);
+            return this.voice;
         },
 
-        setLangIndex(index: number) {
-            this.langIndex = index;
-            localStorage.setItem("langIndex", this.langIndex.toString());
+        setLang(lang: LanguageType) {
+            this.lang = lang;
+            localStorage.setItem("lang", this.lang.toString());
         },
-        getLangIndex(): number {
-            var langInd = localStorage.getItem("langIndex");
-            if (langInd) {
-                this.langIndex = +langInd;
-            }
-            return this.langIndex;
+        getLang(): LanguageType {
+            const langCode: string | null = localStorage.getItem("lang");
+            if (!langCode) return languages[0];
+            this.lang = stringToLanguageType(langCode);
+            return this.lang;
         },
 
         setRate(rate: number) {
@@ -38,7 +44,7 @@ export const useSettingsStore = defineStore('setting', {
             localStorage.setItem("rate", this.rate.toString());
         },
         getRate(): number {
-            var rate = localStorage.getItem("rate");
+            const rate: string | null = localStorage.getItem("rate");
             if (rate) {
                 this.rate = +rate;
             }
@@ -50,7 +56,7 @@ export const useSettingsStore = defineStore('setting', {
             localStorage.setItem("pitch", this.pitch.toString());
         },
         getPitch(): number {
-            var pitch = localStorage.getItem("pitch");
+            const pitch: string | null = localStorage.getItem("pitch");
             if (pitch) {
                 this.pitch = +pitch;
             }
@@ -62,7 +68,7 @@ export const useSettingsStore = defineStore('setting', {
             localStorage.setItem("volume", this.volume.toString());
         },
         getVolume(): number {
-            var volume = localStorage.getItem("volume");
+            const volume: string | null = localStorage.getItem("volume");
             if (volume) {
                 this.volume = +volume;
             }

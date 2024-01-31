@@ -3,6 +3,12 @@ export type LanguageType = {
     language: string;
 }
 
+export function stringToLanguageType(langCode: string): LanguageType{
+        let lang: LanguageType | undefined = languages.find((lang: LanguageType) => lang.code === langCode);
+        if(lang === undefined) lang = languages[0];
+        return lang;
+}
+
 export const languages: LanguageType[] =
     [
         {code: 'ab', language: 'Abkhazian'},
