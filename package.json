@@ -15,6 +15,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.5",
     "naive-ui": "^2.36.0",
     "pinia": "^2.1.7",
+    "typesbcp47": "^1.2.0",
     "vue": "^3.3.11",
     "vue-github-button": "^3.1.0"
   },

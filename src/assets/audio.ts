@@ -8,7 +8,7 @@ export function initSpeech(){
     let synth = initSynth();
     const settingsStore = useSettingsStore();
     let message = new SpeechSynthesisUtterance();
-    message.lang = settingsStore.getLang() ? settingsStore.getLang().code : "en";
+    message.lang = settingsStore.getLang() ? settingsStore.getLang().code : "en-US";
     message.rate = settingsStore.getRate() ? settingsStore.getRate() : 1;
     message.pitch = settingsStore.getPitch() ? settingsStore.getPitch() : 1;
     message.voice = settingsStore.getVoice() ? settingsStore.getVoice() : synth.getVoices()[1];

@@ -18,21 +18,21 @@
     </div>
 
     <div>
-      <n-select :options="langs" @update-value="setLang" :value="langSelected"/>
+      <n-select :options="langs" :value="langSelected" @update-value="setLang"/>
     </div>
 
     <div>
-      <n-select :options="voices" @update-value="setVoice" :value="voiceSelected"/>
+      <n-select :options="voices" :value="voiceSelected" @update-value="setVoice"/>
     </div>
 
-<!--        <div class="keybind">-->
-<!--          <n-button @click="showModal = true">-->
-<!--            Keybind-->
-<!--          </n-button>-->
-<!--          <n-modal v-model:show="showModal">-->
-<!--            <KeybindComponent />-->
-<!--          </n-modal>-->
-<!--        </div>-->
+    <!--        <div class="keybind">-->
+    <!--          <n-button @click="showModal = true">-->
+    <!--            Keybind-->
+    <!--          </n-button>-->
+    <!--          <n-modal v-model:show="showModal">-->
+    <!--            <KeybindComponent />-->
+    <!--          </n-modal>-->
+    <!--        </div>-->
   </div>
 </template>
 <script lang="ts">
@@ -55,7 +55,7 @@ export default {
     this.rate = this.store.getRate() * 100;
 
     this.langSelected = this.store.getLang() ?
-        this.store.getLang().language : '';
+        this.store.getLang().language : 'en-US';
 
     this.voiceSelected = this.store.getVoice() ?
         this.store.getVoice().name : '';
@@ -76,12 +76,16 @@ export default {
     setLang(lang: LanguageType) {
       this.store.setLang(lang);
       this.langSelected = lang.language;
+      this.populateVoices();
     },
-    setVoice(voice: SpeechSynthesisVoice){
+
+    setVoice(voice: SpeechSynthesisVoice) {
       this.store.setVoice(voice);
       this.voiceSelected = voice.name;
     },
-    populateVoices(): Array<{ label: string, value: SpeechSynthesisVoice }>{
+
+    populateVoices(): Array<{ label: string, value: SpeechSynthesisVoice }> {
+      initSpeech();
       this.voiceSelected = this.synth.getVoices()[0] ? this.synth.getVoices()[0].name : '';
       return this.synth.getVoices().map((voice) => {
         return {
@@ -107,12 +111,6 @@ export default {
         this.store.setRate(this.rate / 100);
       }
     },
-    //IMPORTANT : LES VOIX CHANGENT EN FONCTION DE LA LANGUE
-    langSelected: function (val, oldval) {
-      if (val != oldval) {
-        this.populateVoices();
-      }
-    },
   },
   computed: {
     langs(): Array<{ label: string, value: LanguageType }> {
@@ -124,13 +122,15 @@ export default {
       });
     },
 
-    voices(): Array<{ label: string, value: SpeechSynthesisVoice }>{
+    voices(): Array<{ label: string, value: SpeechSynthesisVoice }> {
       return this.populateVoices();
     },
 
     synth(): SpeechSynthesis {
       return initSynth();
     }
+
+
   }
 }
 </script>
