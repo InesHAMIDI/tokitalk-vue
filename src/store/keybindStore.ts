@@ -1,14 +1,13 @@
-import {pinia} from "./store.ts";
-
-export const keybindStore = pinia?.defineStore('text', {
+import { defineStore } from 'pinia';
+export const keybindStore = defineStore('text', {
     state: () => ({
-        keys: [],
+        keys: [] as string[],
     }),
     actions: {
-        getKeys() {
-            return this.keys();
+        getKeys(): string[] {
+            return this.keys;
         },
-        editKey(index, newText) {
+        editKey(index: number, newText: string) {
             this.keys[index] = newText;
         },
     },
