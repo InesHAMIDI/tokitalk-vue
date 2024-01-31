@@ -1,37 +1,54 @@
 <template>
   <div class="layer">
-    <n-space vertical>
-      <n-input
-          v-model:value="text"
-          placeholder="TokiTalk"
-          size="medium"
-          type="textarea"
-      />
-    </n-space>
-    <n-button @click='$emit(text)'>
-      <i class="fa-solid fa-check"></i>
-    </n-button>
+    <div class="text-area">
+      <n-form ref="formRef"
+              :model="formValue">
+        <n-form-item>
+          <n-input round
+                   v-model:value="formValue.textToRead"
+                   type="textarea"
+                   size="small"
+                   :autosize="{
+                      minRows: 3,
+                      maxRows: 5
+                   }"
+                   @keyup.enter="validateText"
+          />
+        </n-form-item>
+        <n-form-item>
+          <n-button
+                    @click="validateText">
+            <font-awesome-icon :icon="['fas', 'paper-plane']"/>
+          </n-button>
+        </n-form-item>
+      </n-form>
+    </div>
   </div>
 </template>
-<script>
-import {NInput, NSpace} from 'naive-ui';
+<script lang="ts">
+import {ref} from "vue";
+import {FormInst} from 'naive-ui'
 
 export default {
-  components: {
-    NInput,
-    NSpace,
-
-  },
   setup() {
-  },
-  data() {
+    const formRef = ref<FormInst | null>(null)
     return {
-      text: "",
+      formRef,
+      formValue: ref({
+        textToRead: ''
+      }),
     }
   },
-  methods: {}
+  methods: {
+    validateText() {
+      if (!this.formValue.textToRead) return;
+      this.$emit(this.formValue.textToRead);
+      this.formValue.textToRead = "";
+    }
+  }
 }
 </script>
 <style scoped>
-@import "../../public/cssVariables.css";
+@import "../../public/cssVariables.scss";
+
 </style>
