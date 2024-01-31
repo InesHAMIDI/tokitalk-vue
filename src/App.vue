@@ -1,31 +1,28 @@
-<script lang="ts" setup>
+<script lang="ts">
+import FooterComponent from "./components/FooterComponent.vue";
+import ButtonsLayerComponent from "./components/ButtonsLayerComponent.vue";
+import SettingsLayerComponent from "./components/SettingsLayerComponent.vue";
+import TextAreaLayerComponent from "./components/TextAreaLayerComponent.vue";
+
+export default {
+  name: "App",
+  components: {
+    SettingsLayerComponent,
+    TextAreaLayerComponent,
+    FooterComponent,
+    ButtonsLayerComponent,
+  }
+}
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img alt="Vite logo" class="logo" src="/vite.svg"/>
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img alt="Vue logo" class="logo vue" src="./assets/vue.svg"/>
-    </a>
-  </div>
-  <
+  <ButtonsLayerComponent/>
+  <TextAreaLayerComponent/>
+  <SettingsLayerComponent/>
+  <FooterComponent/>
+
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>
