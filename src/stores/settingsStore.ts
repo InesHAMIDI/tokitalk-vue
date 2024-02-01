@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia';
-import {languages, LanguageType, stringToLanguageType} from "../assets/languages.ts";
+import {languageType, LanguageType, stringToLanguageType} from "../domain/LanguageType.ts";
 
-export  function stringToSpeechSynthesisVoice(voiceURI: string): SpeechSynthesisVoice {
+export function stringToSpeechSynthesisVoice(voiceURI: string): SpeechSynthesisVoice {
     let voice: SpeechSynthesisVoice | undefined = speechSynthesis.getVoices().find((voice: SpeechSynthesisVoice) => voice.voiceURI === voiceURI);
     if (voice === undefined)
         voice = speechSynthesis.getVoices()[1];
@@ -11,7 +11,7 @@ export  function stringToSpeechSynthesisVoice(voiceURI: string): SpeechSynthesis
 export const useSettingsStore = defineStore('setting', {
     state: () => ({
         voice: speechSynthesis.getVoices()[1], //the voice selected
-        lang: languages[0], //the language selected
+        lang: languageType[0], //the language selected
         rate: 1, //float between [0.1 ; 10]
         pitch: 1, //float between [0 ; 2]
         volume: 0 //float between [0 ; 1]
@@ -34,7 +34,7 @@ export const useSettingsStore = defineStore('setting', {
         },
         getLang(): LanguageType {
             const langCode: string | null = localStorage.getItem("lang");
-            if (!langCode) return languages[0];
+            if (!langCode) return languageType[0];
             this.lang = stringToLanguageType(langCode);
             return this.lang;
         },

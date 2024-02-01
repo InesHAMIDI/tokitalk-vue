@@ -38,56 +38,61 @@
 <script lang="ts">
 import KeybindComponent from "./KeybindComponent.vue";
 import {ref} from "vue";
-import {useSettingsStore} from "../stores/settingsStore.ts";
-import {languages, LanguageType} from "../assets/languages.ts";
-import {initSpeech, initSynth} from "../assets/audio.ts";
+import {languageType, LanguageType} from "../domain/LanguageType.ts";
+import {Settings} from "../domain/Settings.ts";
+import {Speech} from "../domain/Speech.ts";
 
 export default {
   components: {
     KeybindComponent
   },
   setup() {
-    initSpeech();
+    return {}
   },
   mounted() {
-    this.volume = this.store.getVolume() * 100;
-    this.pitch = this.store.getPitch() * 100;
-    this.rate = this.store.getRate() * 100;
+    this.volume = this.settings.volume * 100;
+    this.pitch = this.settings.pitch * 100;
+    this.rate = this.settings.rate * 100;
 
-    this.langSelected = this.store.getLang() ?
-        this.store.getLang().language : 'en-US';
+    this.langSelected = this.settings.lang ?
+        this.settings.lang.language : 'en-US';
 
-    this.voiceSelected = this.store.getVoice() ?
-        this.store.getVoice().name : '';
+    this.voiceSelected = this.settings.voice ?
+        this.settings.voice.name : '';
   },
   data() {
+    const settings = new Settings();
+    const speech = new Speech(settings);
+
     return {
+      settings,
+      speech,
       showModal: ref(false),
-      store: useSettingsStore(),
       volume: 0,
       pitch: 0,
       rate: 0,
       langInd: '',
-      langSelected: languages[0] ? languages[0].language : '',
+      langSelected: languageType[0] ? languageType[0].language : '',
       voiceSelected: '',
     }
   },
   methods: {
     setLang(lang: LanguageType) {
-      this.store.setLang(lang);
+      this.settings.setLang(lang);
       this.langSelected = lang.language;
       this.populateVoices();
+      this.speech.updateSettings();
     },
 
     setVoice(voice: SpeechSynthesisVoice) {
-      this.store.setVoice(voice);
+      this.settings.setVoice(voice);
       this.voiceSelected = voice.name;
+      this.speech.updateSettings();
     },
 
     populateVoices(): Array<{ label: string, value: SpeechSynthesisVoice }> {
-      initSpeech();
-      this.voiceSelected = this.synth.getVoices()[0] ? this.synth.getVoices()[0].name : '';
-      return this.synth.getVoices().map((voice) => {
+      let voices = this.speech.updateVoices();
+      return voices.map((voice) => {
         return {
           label: voice.name,
           value: voice
@@ -98,23 +103,26 @@ export default {
   watch: {
     volume: function (val, oldval) {
       if (val != oldval) {
-        this.store.setVolume(this.volume / 100);
+        this.settings.setVolume(this.volume / 100);
+        this.speech.updateSettings();
       }
     },
     pitch: function (val, oldval) {
       if (val != oldval) {
-        this.store.setPitch(this.pitch / 100);
+        this.settings.setPitch(this.pitch / 100);
+        this.speech.updateSettings();
       }
     },
     rate: function (val, oldval) {
       if (val != oldval) {
-        this.store.setRate(this.rate / 100);
+        this.settings.setRate(this.rate / 100);
+        this.speech.updateSettings();
       }
     },
   },
   computed: {
     langs(): Array<{ label: string, value: LanguageType }> {
-      return languages.map((lang) => {
+      return languageType.map((lang) => {
         return {
           label: lang.language,
           value: lang
@@ -125,11 +133,6 @@ export default {
     voices(): Array<{ label: string, value: SpeechSynthesisVoice }> {
       return this.populateVoices();
     },
-
-    synth(): SpeechSynthesis {
-      return initSynth();
-    }
-
 
   }
 }

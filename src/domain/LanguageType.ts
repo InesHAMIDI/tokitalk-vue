@@ -6,12 +6,12 @@ export type LanguageType = {
 }
 
 export function stringToLanguageType(langCode: string): LanguageType {
-    let lang: LanguageType | undefined = languages.find((lang: LanguageType) => lang.code === langCode);
-    if (lang === undefined) lang = languages[0];
+    let lang: LanguageType | undefined = languageType.find((lang: LanguageType) => lang.code === langCode);
+    if (lang === undefined) lang = languageType[0];
     return lang;
 }
 
-export const languages: LanguageType[] = initLanguages();
+export const languageType: LanguageType[] = initLanguages();
 
 function initLanguages(): LanguageType[] {
     return LanguageUtils.getCommonLanguages().map((lang: Language) => {
