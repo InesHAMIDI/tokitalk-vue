@@ -1,5 +1,3 @@
-import {Language, LanguageUtils} from 'typesbcp47';
-
 export type LanguageType = {
     code: string;
     language: string;
@@ -11,13 +9,7 @@ export function stringToLanguageType(langCode: string): LanguageType {
     return lang;
 }
 
-export const languageType: LanguageType[] = initLanguages();
+export const languageType: LanguageType[] = [
+    {code: "fr-FR", language: "Français"}
+];
 
-function initLanguages(): LanguageType[] {
-    return LanguageUtils.getCommonLanguages().map((lang: Language) => {
-        return {
-            code: lang.getCode().normalize(),
-            language: lang.getDescription(),
-        };
-    });
-}
