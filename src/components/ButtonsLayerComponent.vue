@@ -1,6 +1,6 @@
 <template>
   <div class="buttons-area">
-    <div class="perso-buttons" v-for="button in buttons" :key="button">
+    <div class="perso-buttons" v-for="button in buttons.getButtons()" :key="button">
       <div v-if="button">
         <n-button @click="$emit(button)">
           {{ button }}
@@ -37,7 +37,7 @@
 <script lang="ts">
 import {ref} from 'vue'
 import {FormInst} from 'naive-ui'
-import {useButtonStore} from "../stores/buttonsStore.ts";
+import {Buttons} from "../domain/Buttons.ts";
 
 export default {
   setup() {
@@ -51,27 +51,23 @@ export default {
   },
   data() {
     return {
-      store: useButtonStore(),
+      buttons: new Buttons(),
     }
   },
   methods: {
     newButton(text: string) {
       if (!text) return;
 
-      this.store.addButton(text);
+      this.buttons.addButton(text);
       this.formValue.newButtonText = '';
     },
 
     removeButton(button: string) {
-      const index = this.buttons.indexOf(button);
-      console.log(index);
-      this.store.removeButton(index);
+      const index = this.buttons.getButtons().indexOf(button);
+      this.buttons.removeButton(index);
     }
   },
   computed: {
-    buttons() {
-      return this.store.getButtons();
-    }
   }
 }
 </script>
