@@ -22,7 +22,6 @@ export default defineConfig({
                         'useLoadingBar'
                     ],
                 },
-                'pinia',
             ]
         }),
         Components({
