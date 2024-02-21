@@ -37,7 +37,8 @@
 <script lang="ts">
 import {ref} from 'vue'
 import {FormInst} from 'naive-ui'
-import {Buttons} from "../domain/Buttons.ts";
+import {ButtonsService} from "../service/ButtonsService.ts";
+import {ButtonsRepository} from "../repository/ButtonsRepository.ts";
 
 export default {
   setup() {
@@ -45,26 +46,30 @@ export default {
     return {
       formRef,
       formValue: ref({
-        newButtonText: ''
+        newButtonText: '',
       }),
     }
   },
   data() {
+    const buttonsRepository = new ButtonsRepository();
+    const buttonsService = new ButtonsService(buttonsRepository);
     return {
-      buttons: new Buttons(),
+      buttonsService,
+      buttonsRepository,
+
     }
   },
   methods: {
     newButton(text: string) {
       if (!text) return;
 
-      this.buttons.addButton(text);
+      this.buttonsService.addButton(text);
       this.formValue.newButtonText = '';
     },
 
     removeButton(button: string) {
-      const index = this.buttons.getButtons().indexOf(button);
-      this.buttons.removeButton(index);
+      const index = this.buttonsService.getButtons().indexOf(button);
+      this.buttonsService.removeButton(index);
     }
   },
   computed: {
