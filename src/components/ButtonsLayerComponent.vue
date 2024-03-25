@@ -1,6 +1,6 @@
 <template>
   <div class="buttons-area">
-    <div class="perso-buttons" v-for="button in buttons.getButtons()" :key="button">
+    <div class="perso-buttons" v-for="button in buttonsService.getButtons()" :key="button">
       <div v-if="button">
         <n-button @click="$emit(button)">
           {{ button }}
@@ -56,7 +56,6 @@ export default {
     return {
       buttonsService,
       buttonsRepository,
-
     }
   },
   methods: {

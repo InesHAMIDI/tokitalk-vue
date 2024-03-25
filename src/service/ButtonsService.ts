@@ -19,7 +19,7 @@ export class ButtonsService{
         const bts: string = this.buttonsRepository.getButtons();
         let buttons: string[] = [];
         if (bts) {
-            buttons = bts?.split(",");
+                buttons = bts?.split(",");
         }
         return buttons;
     }
