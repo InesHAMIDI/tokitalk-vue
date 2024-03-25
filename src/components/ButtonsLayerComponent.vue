@@ -1,6 +1,6 @@
 <template>
   <div class="buttons-area">
-    <div class="perso-buttons" v-for="button in buttonsService.getButtons()" :key="button">
+    <div class="perso-buttons" v-for="button in buttons" :key="button">
       <div v-if="button">
         <n-button @click="$emit(button)">
           {{ button }}
@@ -25,7 +25,7 @@
         </n-form-item>
         <n-form-item>
           <n-button
-                    @click="newButton(formValue.newButtonText)">
+              @click="newButton(formValue.newButtonText)">
             <font-awesome-icon :icon="['fas', 'plus']"/>
           </n-button>
         </n-form-item>
@@ -43,19 +43,19 @@ import {ButtonsRepository} from "../repository/ButtonsRepository.ts";
 export default {
   setup() {
     const formRef = ref<FormInst | null>(null)
+    const buttonsRepository = new ButtonsRepository();
+    const buttonsService = new ButtonsService(buttonsRepository);
     return {
       formRef,
+      buttonsService,
+      buttonsRepository,
       formValue: ref({
         newButtonText: '',
       }),
     }
   },
   data() {
-    const buttonsRepository = new ButtonsRepository();
-    const buttonsService = new ButtonsService(buttonsRepository);
     return {
-      buttonsService,
-      buttonsRepository,
     }
   },
   methods: {
@@ -72,6 +72,9 @@ export default {
     }
   },
   computed: {
+    buttons(){
+      return this.buttonsService.getButtons();
+    }
   }
 }
 </script>
