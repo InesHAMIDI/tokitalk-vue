@@ -1,12 +1,14 @@
 import {ButtonsRepository} from "../repository/ButtonsRepository.ts";
 import {Buttons} from "../domain/Buttons.ts";
 
-export class ButtonsService{
+export class ButtonsService {
 
     private buttonsRepository: ButtonsRepository
-    constructor(buttonRepo: ButtonsRepository ) {
+
+    constructor(buttonRepo: ButtonsRepository) {
         this.buttonsRepository = buttonRepo;
     }
+
     addButton(text: string) {
         const buttons: string[] = this.getButtons();
         buttons.push(text);
@@ -16,10 +18,10 @@ export class ButtonsService{
     }
 
     getButtons(): string[] {
-        const bts: string = this.buttonsRepository.getButtons();
+        const bts: string | null = this.buttonsRepository.getButtons();
         let buttons: string[] = [];
         if (bts) {
-                buttons = bts?.split(",");
+            buttons = bts?.split(",");
         }
         return buttons;
     }

@@ -1,11 +1,11 @@
 import {Buttons} from "../domain/Buttons";
 
-export class ButtonsRepository{
+export class ButtonsRepository {
     saveButtons(button: Buttons) {
-        localStorage.setItem("buttons", button.getButtons().toString());
+        localStorage.setItem("buttons", button.buttons.toString());
     }
 
-    getButtons():  string {
-       return localStorage.getItem("buttons");
+    getButtons(): string | null {
+        return localStorage.getItem("buttons");
     }
 }

@@ -1,4 +1,4 @@
-<template>
+<template :key="buttons">
   <div class="buttons-area">
     <div class="perso-buttons" v-for="button in buttons" :key="button">
       <div v-if="button">
@@ -56,26 +56,32 @@ export default {
   },
   data() {
     return {
+      buttons: [] as string[],
     }
   },
   methods: {
     newButton(text: string) {
       if (!text) return;
-
+      this.buttons.push(text);
       this.buttonsService.addButton(text);
       this.formValue.newButtonText = '';
     },
 
     removeButton(button: string) {
       const index = this.buttonsService.getButtons().indexOf(button);
+      if (index == 0) {
+        this.buttons.shift();
+      } else {
+        this.buttons.splice(index, 1);
+      }
       this.buttonsService.removeButton(index);
     }
   },
-  computed: {
-    buttons(){
-      return this.buttonsService.getButtons();
-    }
-  }
+  computed: {},
+  mounted() {
+    this.buttons = this.buttonsService.getButtons();
+  },
+
 }
 </script>
 <style scoped>
