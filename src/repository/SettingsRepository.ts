@@ -1,67 +1,64 @@
-import {languageType, LanguageType, stringToLanguageType} from "../domain/LanguageType.ts";
 import {Settings} from "../domain/Settings.ts";
 
-export class SettingsRepository{
-    getPitch(): string | null {
-        return localStorage.getItem("pitch");
+export class SettingsRepository {
+
+    isString(value: string | null): value is string {
+        return value !== null;
     }
 
+    getSettings(): Settings {
 
-    getVoice(): string | null {
-        return localStorage.getItem("voice");
+        let lang: string;
+        if (this.isString(localStorage.getItem("lang"))) {
+            lang = <string>localStorage.getItem("lang");
+        } else {
+            lang = "";
+        }
+
+        let voice: string;
+        if (this.isString(localStorage.getItem("voice"))) {
+            voice = <string>localStorage.getItem("voice");
+        } else {
+            voice = "";
+        }
+
+        let rate: number;
+        if (this.isString(localStorage.getItem("rate"))) {
+            rate = parseInt(<string>localStorage.getItem("rate"));
+        } else {
+            rate = 1;
+        }
+
+        let pitch: number;
+        if (this.isString(localStorage.getItem("pitch"))) {
+            pitch = parseInt(<string>localStorage.getItem("pitch"));
+        } else {
+            pitch = 1;
+        }
+
+        let volume: number;
+        if (this.isString(localStorage.getItem("volume"))) {
+            volume = parseInt(<string>localStorage.getItem("volume"));
+        } else {
+            volume = 1;
+        }
+        
+        let settings: Settings = new Settings();
+
+        return settings.allArgsConstructor(
+            lang,
+            voice,
+            rate,
+            pitch,
+            volume
+        );
     }
 
-
-    getLang(): string | null {
-        return localStorage.getItem("lang");
+    setSettings(settings: Settings): void {
+        localStorage.setItem("lang", settings.lang.language);
+        localStorage.setItem("voice", settings.voice);
+        localStorage.setItem("rate", settings.rate.toString());
+        localStorage.setItem("pitch", settings.pitch.toString());
+        localStorage.setItem("volume", settings.volume.toString());
     }
-
-
-    getRate(): string | null {
-        return localStorage.getItem("rate");
-    }
-
-
-    getVolume(): string | null {
-        return localStorage.getItem("volume");
-    }
-
-    saveVoice(value: SpeechSynthesisVoice) {
-        localStorage.setItem("voice", value.toString());
-    }
-
-    saveLang(value: LanguageType) {
-        localStorage.setItem("lang", value.toString());
-
-    }
-
-    saveRate(value: number) {
-        localStorage.setItem("rate", value.toString());
-    }
-
-    savePitch(value: number) {
-        localStorage.setItem("pitch", value.toString());
-    }
-
-    saveVolume(value: number) {
-        localStorage.setItem("volume", value.toString());
-    }
-
-    // saveSettings(settings:Settings): void{
-    //     this.saveLang(settings.lang);
-    //     this.saveRate(settings.lang);
-    //     this.savePitch(settings.lang);
-    //     this.saveVoice(settings.lang);
-    //     this.saveVolume(settings.lang);
-    // }
-    //
-    // getSettings(): Settings{
-    //     let settings: Settings = new Settings();
-    //     settings.lang = this.getLang();
-    //     settings.pitch = this.getPitch();
-    //     settings.rate = this.getRate();
-    //     settings.voice = this.getVoice();
-    //     settings.volume = this.getVolume()
-    // }
-
 }

@@ -1,16 +1,22 @@
-import {languageType, LanguageType} from "./LanguageType.ts";
+import {languageType, LanguageType, stringToLanguageType} from "./LanguageType.ts";
 
 export class Settings {
     public constructor() {
         this._lang = languageType[0];
-        this._voice = speechSynthesis.getVoices()[1];
+        this._voice = speechSynthesis.getVoices()[1].name;
         this._rate = 1; //float between [0.1 ; 10]
         this._pitch = 1; //float between [0 ; 2]
         this._volume = 1; //float between [0 ; 1]
     }
 
+    private _voice: string;
+
     private _pitch: number;
-    private _voice: SpeechSynthesisVoice;
+
+    get voice(): string {
+        return this._voice;
+    }
+
     private _lang: LanguageType;
     private _rate: number;
     private _volume: number;
@@ -23,12 +29,17 @@ export class Settings {
         this._pitch = value;
     }
 
-    get voice(): SpeechSynthesisVoice {
-        return this._voice;
+    set voice(value: string) {
+        this._voice = value;
     }
 
-    set voice(value: SpeechSynthesisVoice) {
-        this._voice = value;
+    public allArgsConstructor(lang: string, voice: string, rate: number, pitch: number, volume: number): this {
+        this._lang = stringToLanguageType(lang);
+        this._voice = voice;
+        this._rate = rate;
+        this._pitch = pitch;
+        this._volume = volume;
+        return this;
     }
 
     get lang(): LanguageType {

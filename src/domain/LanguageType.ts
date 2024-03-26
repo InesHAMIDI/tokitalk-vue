@@ -10,6 +10,8 @@ export function stringToLanguageType(langCode: string): LanguageType {
 }
 
 export const languageType: LanguageType[] = [
-    {code: "fr-FR", language: "Français"}
+    {code: "fr-FR", language: "Français"},
+    {code: "en-US", language: "Anglais-US"}
+
 ];
 
