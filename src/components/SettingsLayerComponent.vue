@@ -41,15 +41,23 @@ import {ref} from "vue";
 import {languageType, LanguageType} from "../domain/LanguageType.ts";
 import {Settings} from "../domain/Settings.ts";
 import {Speech} from "../domain/Speech.ts";
+import {SettingsRepository} from "../repository/SettingsRepository.ts";
+import {SettingsService} from "../service/SettingsService.ts";
 
 export default {
   components: {
     KeybindComponent
   },
   setup() {
-    return {}
+    const settingsRepository: SettingsRepository = new SettingsRepository();
+    const settingsService: SettingsService = new SettingsService(settingsRepository);
+    return {
+      settingsRepository,
+      settingsService
+    }
   },
   mounted() {
+    this.settings = this.settingsService.getSettings();
     this.volume = this.settings.volume * 100;
     this.pitch = this.settings.pitch * 100;
     this.rate = this.settings.rate * 100;
@@ -58,10 +66,10 @@ export default {
         this.settings.lang.language : 'en-US';
 
     this.voiceSelected = this.settings.voice ?
-        this.settings.voice.name : '';
+        this.settings.voice: '';
   },
   data() {
-    const settings = new Settings();
+    const settings: Settings = new Settings();
     const speech = new Speech(settings);
 
     return {
@@ -78,14 +86,14 @@ export default {
   },
   methods: {
     setLang(lang: LanguageType) {
-      this.settings.setLang(lang);
+      this.settings.lang(lang);
       this.langSelected = lang.language;
       this.populateVoices();
       this.speech.updateSettings();
     },
 
     setVoice(voice: SpeechSynthesisVoice) {
-      this.settings.setVoice(voice);
+      this.settings.voice(voice);
       this.voiceSelected = voice.name;
       this.speech.updateSettings();
     },
@@ -103,19 +111,19 @@ export default {
   watch: {
     volume: function (val, oldval) {
       if (val != oldval) {
-        this.settings.setVolume(this.volume / 100);
+        this.settings.volume(this.volume / 100);
         this.speech.updateSettings();
       }
     },
     pitch: function (val, oldval) {
       if (val != oldval) {
-        this.settings.setPitch(this.pitch / 100);
+        this.settings.pitch(this.pitch / 100);
         this.speech.updateSettings();
       }
     },
     rate: function (val, oldval) {
       if (val != oldval) {
-        this.settings.setRate(this.rate / 100);
+        this.settings.rate(this.rate / 100);
         this.speech.updateSettings();
       }
     },
